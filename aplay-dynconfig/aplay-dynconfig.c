@@ -458,8 +458,12 @@ static snd_config_t *snd_create_multi_plug(snd_config_t **dshares, int n_dshares
 	snd_config_set_string(node,"plug");
 	snd_config_add(top, node);
 
-	snd_config_make_compound(&node, "slave.pcm", 1);
+	snd_config_make_compound(&node, "slave", 1);
 	snd_config_add(top, node);
+
+	par = node;
+	snd_config_make_compound(&node, "pcm", 1);
+	snd_config_add(par, node);
 
 	par = node;
 	snd_config_make_string(&node, "type");
